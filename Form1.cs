@@ -13,5 +13,17 @@ namespace bsk_zadania1
             rail.Show();
             this.Hide();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void macierzowe2a_Click(object sender, EventArgs e)
+        {
+            Macierzowe2a macierzowe2a = new Macierzowe2a();
+            macierzowe2a.Show();
+            this.Hide();
+        }
     }
 }
