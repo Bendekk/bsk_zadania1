@@ -16,6 +16,7 @@ namespace bsk_zadania1
         {
             InitializeComponent();
             label2.Hide();
+            label3.Hide();
         }
 
         string myword;
@@ -65,6 +66,14 @@ namespace bsk_zadania1
             }
             label2.Text = new string(C);
             label2.Show();
+            label3.Show();
+        }
+
+        private void menu2a_Click(object sender, EventArgs e)
+        {
+            Form1 form = new Form1();
+            form.Show();
+            this.Hide();
         }
     }
 }

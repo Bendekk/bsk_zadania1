@@ -23,14 +23,15 @@
         {
             this.button1 = new System.Windows.Forms.Button();
             this.macierzowe2a = new System.Windows.Forms.Button();
+            this.macierzowe2b = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(17, 20);
+            this.button1.Location = new System.Drawing.Point(13, 14);
             this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(107, 38);
+            this.button1.Size = new System.Drawing.Size(150, 50);
             this.button1.TabIndex = 0;
             this.button1.Text = "Rail Fance";
             this.button1.UseVisualStyleBackColor = true;
@@ -38,19 +39,30 @@
             // 
             // macierzowe2a
             // 
-            this.macierzowe2a.Location = new System.Drawing.Point(131, 24);
+            this.macierzowe2a.Location = new System.Drawing.Point(170, 14);
             this.macierzowe2a.Name = "macierzowe2a";
-            this.macierzowe2a.Size = new System.Drawing.Size(135, 34);
+            this.macierzowe2a.Size = new System.Drawing.Size(150, 50);
             this.macierzowe2a.TabIndex = 1;
-            this.macierzowe2a.Text = "Macierzowe2a";
+            this.macierzowe2a.Text = "Macierzowe 2a";
             this.macierzowe2a.UseVisualStyleBackColor = true;
             this.macierzowe2a.Click += new System.EventHandler(this.macierzowe2a_Click);
+            // 
+            // macierzowe2b
+            // 
+            this.macierzowe2b.Location = new System.Drawing.Point(326, 14);
+            this.macierzowe2b.Name = "macierzowe2b";
+            this.macierzowe2b.Size = new System.Drawing.Size(150, 50);
+            this.macierzowe2b.TabIndex = 2;
+            this.macierzowe2b.Text = "Macierzowe 2b";
+            this.macierzowe2b.UseVisualStyleBackColor = true;
+            this.macierzowe2b.Click += new System.EventHandler(this.macierzowe2b_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(397, 317);
+            this.ClientSize = new System.Drawing.Size(483, 149);
+            this.Controls.Add(this.macierzowe2b);
             this.Controls.Add(this.macierzowe2a);
             this.Controls.Add(this.button1);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -65,5 +77,6 @@
 
         private Button button1;
         private Button macierzowe2a;
+        private Button macierzowe2b;
     }
 }
