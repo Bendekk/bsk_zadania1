@@ -16,7 +16,6 @@ namespace bsk_zadania1
         {
             InitializeComponent();
             label2.Hide();
-            label3.Hide();
             label6.Hide();
         }
 
@@ -30,9 +29,7 @@ namespace bsk_zadania1
         private void submit_Click(object sender, EventArgs e)
         {
             //key = 3-4-1-5-2
-            List<string> fivesStrings = new List<string>();
             string C = "", substr = "";
-            char temp = ' ';
             for (int i = 0; i <= myword.Length; i = i + d)
             {
                 if ((i+d) <= myword.Length)
@@ -67,7 +64,40 @@ namespace bsk_zadania1
             }
             label2.Text = new string(C);
             label2.Show();
-            label3.Show();
+            string C2 = "";
+            for (int i = 0; i <= C.Length; i = i + d)
+            {
+                if ((i + d) <= C.Length)
+                {
+                    substr = C.Substring(i, d);
+                    C2 = C2 + substr[2] + substr[4] + substr[0] + substr[1] + substr[3];
+                }
+                else
+                {
+                    if (myword.Length % 5 == 1)
+                    {
+                        substr = C.Substring(i, 1);
+                        C2 = C2 + substr[0];
+                    }
+                    if (myword.Length % 5 == 2)
+                    {
+                        substr = C.Substring(i, 2);
+                        C2 = C2 + substr[0] + substr[1];
+                    }
+                    if (myword.Length % 5 == 3)
+                    {
+                        substr = C.Substring(i, 3);
+                        C2 = C2 + substr[2] + substr[0] + substr[1];
+                    }
+                    if (myword.Length % 5 == 4)
+                    {
+                        substr = C.Substring(i, 4);
+                        C2 = C2 + substr[2] + substr[0] + substr[1] + substr[3];
+                    }
+                }
+            }
+            label6.Text = new string(C2);
+            label6.Show();
         }
 
         private void menu2a_Click(object sender, EventArgs e)
