@@ -17,6 +17,7 @@ namespace bsk_zadania1
             InitializeComponent();
             label2.Hide();
             label3.Hide();
+            label6.Hide();
         }
 
         string myword;
