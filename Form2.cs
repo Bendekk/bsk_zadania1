@@ -31,16 +31,16 @@ namespace bsk_zadania1
         }
 
 
-        public static int keyLenght = 11;
+        public static int keyLenght;
 
-        public static int[] numbers1 = kolejnosc(key); //kolejnośc 'liter w słowie'
-
+        public static int[] numbers1;
 
         private void submit_Click(object sender, EventArgs e)
         {
-            string plainText, temp;
+            numbers1 = kolejnosc(key); //kolejnośc 'liter w słowie'
+            keyLenght = temp.Length;
+            string plainText;
             //plainText = LoadText();
-            temp = "HERE IS A SECRET MESSAGE ENCIPHERED BY TRANSPOSITION";
             plainText = RemoveWhitespace(temp);
             //ShowKey();
             //WritePlainTextToBoard(plainText);
@@ -102,7 +102,7 @@ namespace bsk_zadania1
             int quant = elevensStrings.Count;
             string C = "";
             int index = 0;
-            int temp;
+            int tmp;
             char cc = ' ';
 
             for (int i = 0; i < keyLenght; i++)
@@ -112,11 +112,11 @@ namespace bsk_zadania1
                     C = C + " ";
                 }
 
-                temp = i + 1;
+                tmp = i + 1;
 
 
 
-                int v = Array.IndexOf(numbers1, temp);
+                int v = Array.IndexOf(numbers1, tmp);
                 index = v;
                 for (int j = 0; j < quant; j++)
                 {

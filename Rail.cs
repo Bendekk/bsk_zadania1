@@ -110,5 +110,6 @@ namespace bsk_zadania1
             form.Show();    
             this.Hide();
         }
+
     }
 }
