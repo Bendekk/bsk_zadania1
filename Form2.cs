@@ -38,7 +38,7 @@ namespace bsk_zadania1
         private void submit_Click(object sender, EventArgs e)
         {
             numbers1 = kolejnosc(key); //kolejnośc 'liter w słowie'
-            keyLenght = temp.Length;
+            keyLenght = key.Length;
             string plainText;
             //plainText = LoadText();
             plainText = RemoveWhitespace(temp);
