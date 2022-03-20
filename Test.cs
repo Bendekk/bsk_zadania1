@@ -13,7 +13,7 @@ namespace bsk_zadania1
         [Test]
         public void TestRail()
         {
-            Assert.
+            Assert.AreEqual("acebd", Rail.RailDecrupt(2, "abcde"));
         }
     }
 }
