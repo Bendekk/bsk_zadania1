@@ -34,7 +34,17 @@ namespace bsk_zadania1
 
         private void Submit_Click(object sender, EventArgs e)
         {
-            //encrypt
+            string buffer = RailEncrypt(mykey,myword); 
+            label3.Text = buffer;
+            label3.Show();
+            //decrypt
+            string code2 = RailDecrupt(mykey,buffer);
+            label4.Text = code2;
+            label4.Show();
+        }
+
+        public string RailEncrypt(int mykey,string myword)
+        {
             List<string> railFencecode = new List<string>();
             for (int i = 0; i < mykey; i++)
             {
@@ -62,10 +72,11 @@ namespace bsk_zadania1
             {
                 buffer += s;
             }
-            string code = new string(buffer);
-            label3.Text = code;
-            label3.Show();
-            //decrypt
+            return buffer;
+        }
+
+        public string RailDecrupt(int mykey,string myword)
+        {
             int cipherLength = myword.Length;
             List<List<int>> railFencedecode = new List<List<int>>();
             for (int i = 0; i < mykey; i++)
@@ -73,8 +84,8 @@ namespace bsk_zadania1
                 railFencedecode.Add(new List<int>());
             }
 
-            number = 0;
-            increment = 1;
+            int number = 0;
+            int increment = 1;
             for (int i = 0; i < cipherLength; i++)
             {
                 if (number + increment == mykey)
@@ -95,13 +106,12 @@ namespace bsk_zadania1
             {
                 for (int j = 0; j < railFencedecode[i].Count; j++)
                 {
-                    buffer2[railFencedecode[i][j]] = code[counter];
+                    buffer2[railFencedecode[i][j]] = myword[counter];
                     counter++;
                 }
             }
             string code2 = new string(buffer2);
-            label4.Text = code2;
-            label4.Show();
+            return code2;
         }
 
         private void Menu_Click(object sender, EventArgs e)

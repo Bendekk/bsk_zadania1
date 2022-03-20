@@ -12,6 +12,9 @@ namespace bsk_zadania1
 {
     public partial class Form2 : Form
     {
+        public static int keyLenght;
+        public static int[] numbers1;
+
         public Form2()
         {
             InitializeComponent();
@@ -30,26 +33,14 @@ namespace bsk_zadania1
             temp = sentenceText.Text;
         }
 
-
-        public static int keyLenght;
-
-        public static int[] numbers1;
-
         private void submit_Click(object sender, EventArgs e)
         {
-            numbers1 = kolejnosc(key); //kolejnośc 'liter w słowie'
+            numbers1 = kolejnosc(key);
             keyLenght = key.Length;
             string plainText;
-            //plainText = LoadText();
             plainText = RemoveWhitespace(temp);
-            //ShowKey();
-            //WritePlainTextToBoard(plainText);
-            //.WriteLine("encrypted text:");
             label3.Text = new string(Encrypt(plainText));
             label3.Show();
-
-            //Console.Read();
-
         }
 
         public static int[] kolejnosc(string key)
@@ -58,9 +49,7 @@ namespace bsk_zadania1
             char[] word = x.ToCharArray();
             char[] toSort = x.ToCharArray();
             int[] sorted = new int[x.Length];
-
             Array.Sort(toSort);
-
             for (int i = 0; i < toSort.Length; i++)
             {
                 for (int j = 0; j < word.Length; j++)
@@ -85,7 +74,6 @@ namespace bsk_zadania1
         public static List<string> GetElevensStrings(string input)
         {
             List<string> elevensStrings = new List<string>();
-
             for (int i = 0; i <= input.Length; i = i + keyLenght)
             {
                 if ((i + key.Length) < input.Length)
@@ -104,18 +92,13 @@ namespace bsk_zadania1
             int index = 0;
             int tmp;
             char cc = ' ';
-
             for (int i = 0; i < keyLenght; i++)
             {
                 if (i > 0)
                 {
                     C = C + " ";
                 }
-
                 tmp = i + 1;
-
-
-
                 int v = Array.IndexOf(numbers1, tmp);
                 index = v;
                 for (int j = 0; j < quant; j++)
@@ -129,9 +112,6 @@ namespace bsk_zadania1
             }
             return C;
         }
-
-
-
         private void menu2b_Click(object sender, EventArgs e)
         {
             Form1 form = new Form1();
