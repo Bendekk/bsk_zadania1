@@ -12,9 +12,6 @@ namespace bsk_zadania1
 {
     public partial class Form2 : Form
     {
-        public static int keyLenght;
-        public static int[] numbers1;
-
         public Form2()
         {
             InitializeComponent();
@@ -35,11 +32,7 @@ namespace bsk_zadania1
 
         private void submit_Click(object sender, EventArgs e)
         {
-            numbers1 = kolejnosc(key);
-            keyLenght = key.Length;
-            string plainText;
-            plainText = RemoveWhitespace(temp);
-            label3.Text = new string(Encrypt(plainText));
+            label3.Text = new string(Encrypt(temp,key));
             label3.Show();
         }
 
@@ -71,7 +64,7 @@ namespace bsk_zadania1
                 .Where(c => !Char.IsWhiteSpace(c))
                 .ToArray());
         }
-        public static List<string> GetElevensStrings(string input)
+        public static List<string> GetElevensStrings(string input, int keyLenght, string key)
         {
             List<string> elevensStrings = new List<string>();
             for (int i = 0; i <= input.Length; i = i + keyLenght)
@@ -84,9 +77,13 @@ namespace bsk_zadania1
             return elevensStrings;
         }
 
-        public static string Encrypt(string input)
+        public string Encrypt(string word, string key)
         {
-            List<string> elevensStrings = GetElevensStrings(input);
+            string input;
+            input = RemoveWhitespace(word);
+            int keyLenght = key.Length;
+            int[] numbers1 = kolejnosc(key);
+            List<string> elevensStrings = GetElevensStrings(input, keyLenght,key);
             int quant = elevensStrings.Count;
             string C = "";
             int index = 0;

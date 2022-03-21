@@ -29,10 +29,20 @@ namespace bsk_zadania1
         private void submit_Click(object sender, EventArgs e)
         {
             //key = 3-4-1-5-2
+            string C = macierzowa2aEncrypt(myword);
+            label2.Text = new string(C);
+            label2.Show();
+            string C2 = macierzowa2aDecrypt(C);
+            label6.Text = new string(C2);
+            label6.Show();
+        }
+        public string macierzowa2aEncrypt(string myword)
+        {
+            //key = 3-4-1-5-2
             string C = "", substr = "";
             for (int i = 0; i <= myword.Length; i = i + d)
             {
-                if ((i+d) <= myword.Length)
+                if ((i + d) <= myword.Length)
                 {
 
                     substr = myword.Substring(i, d);
@@ -62,9 +72,12 @@ namespace bsk_zadania1
                     }
                 }
             }
-            label2.Text = new string(C);
-            label2.Show();
+            return C;
+        }
+        public string macierzowa2aDecrypt(string C)
+        {
             string C2 = "";
+            string substr = "";
             for (int i = 0; i <= C.Length; i = i + d)
             {
                 if ((i + d) <= C.Length)
@@ -74,30 +87,29 @@ namespace bsk_zadania1
                 }
                 else
                 {
-                    if (myword.Length % 5 == 1)
+                    if (C.Length % 5 == 1)
                     {
                         substr = C.Substring(i, 1);
                         C2 = C2 + substr[0];
                     }
-                    if (myword.Length % 5 == 2)
+                    if (C.Length % 5 == 2)
                     {
                         substr = C.Substring(i, 2);
                         C2 = C2 + substr[0] + substr[1];
                     }
-                    if (myword.Length % 5 == 3)
+                    if (C.Length % 5 == 3)
                     {
                         substr = C.Substring(i, 3);
                         C2 = C2 + substr[2] + substr[0] + substr[1];
                     }
-                    if (myword.Length % 5 == 4)
+                    if (C.Length % 5 == 4)
                     {
                         substr = C.Substring(i, 4);
                         C2 = C2 + substr[2] + substr[0] + substr[1] + substr[3];
                     }
                 }
             }
-            label6.Text = new string(C2);
-            label6.Show();
+            return C2;
         }
 
         private void menu2a_Click(object sender, EventArgs e)
