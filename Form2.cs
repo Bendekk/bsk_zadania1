@@ -79,7 +79,7 @@ namespace bsk_zadania1
         public string Encrypt(string input, string key)
         {
             int keyLenght = key.Length;     //dlugość klucza
-            int[] numbers1 = kolejnosc(key); // 'kolejnosc liter' np. dla CONVENIENCE = [1,10,7,11,3,8,6,4,9,2,5]
+            int[] numbers1 = kolejnosc(key); // kolejnosc liter' np. dla CONVENIENCE = [1,10,7,11,3,8,6,4,9,2,5]
             List<string> elevensStrings = GetElevensStrings(input, keyLenght,key); //podzielenie stringa przez dlugosc klucza
             int quant = elevensStrings.Count;  //ilosc liter w podzielonym stringu
             string C = "";
@@ -109,17 +109,17 @@ namespace bsk_zadania1
             int[] numbers1 = kolejnosc(key);
             string output = "";
             char[,] tab = new char[numbers1.Length, (int)text.Length / numbers1.Length + 1];
-            int modulo = text.Length % numbers1.Length;
+            int modulo = text.Length % numbers1.Length; //sprawdzamy jak, sie dzieli slowo
             int index = 0;
-            for (int i = 0; i < numbers1.Length; i++)
+            for (int i = 0; i < numbers1.Length; i++) //długość klucza
             {
-                if (Array.IndexOf(numbers1, i + 1) < modulo)
+                if (Array.IndexOf(numbers1, i + 1) < modulo) //sprawdzamy jak dużo liter jest w kolumnie (jesli klucz dl = 5, a slowo dl = 6 na pierszej kolumnie są 2 litery, na reszcie 1)
                 {
-                    for (int j = 0; j < (int)text.Length / numbers1.Length + 1; j++)
+                    for (int j = 0; j < (int)text.Length / numbers1.Length + 1; j++) //przechodzimy po wszystkich literach w danej "kolumnie" (ilość przejść = modulo +1),
                     {
-                        if (index <= text.Length - 1)
+                        if (index <= text.Length - 1) //zabezpieczenie klucz dłuższy niż slowo
                         {
-                            tab[Array.IndexOf(numbers1, i + 1), j] = text[index];
+                            tab[Array.IndexOf(numbers1, i + 1), j] = text[index]; //przypisujemy w odpowiednie miejsce litere z zaszyfrowanego tekstu
 
                             index++;
                         }
@@ -127,9 +127,9 @@ namespace bsk_zadania1
                 }
                 else
                 {
-                    for (int j = 0; j < (int)text.Length / numbers1.Length; j++)
+                    for (int j = 0; j < (int)text.Length / numbers1.Length; j++) //przechodzimy po wszystkich literach w kolumnie (ilość przejśc = modulo)
                     {
-                        if (index <= text.Length - 1)
+                        if (index <= text.Length - 1) 
                         {
                             tab[Array.IndexOf(numbers1, i + 1), j] = text[index];
 
@@ -143,7 +143,7 @@ namespace bsk_zadania1
                 for (int g = 0; g < numbers1.Length; g++)
                 {
                     if (tab[g, k] != '\0')
-                        output += tab[g, k];
+                        output += tab[g, k]; //złożenie stringów w całość
                 }
             }
             return output;
