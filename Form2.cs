@@ -39,6 +39,7 @@ namespace bsk_zadania1
             label4.Show();
         }
 
+        //przypisanie kolejnosci literom z klucza
         public static int[] kolejnosc(string key)
         {
             string x = key;
@@ -61,6 +62,7 @@ namespace bsk_zadania1
             return sorted;
         }
 
+        //podzielnie tekstu do zakodowania na 'stringi' o dlugosci klucza
         public static List<string> GetElevensStrings(string input, int keyLenght, string key)
         {
             List<string> elevensStrings = new List<string>();
@@ -76,10 +78,10 @@ namespace bsk_zadania1
 
         public string Encrypt(string input, string key)
         {
-            int keyLenght = key.Length;
-            int[] numbers1 = kolejnosc(key);
-            List<string> elevensStrings = GetElevensStrings(input, keyLenght,key);
-            int quant = elevensStrings.Count;
+            int keyLenght = key.Length;     //dlugość klucza
+            int[] numbers1 = kolejnosc(key); // 'kolejnosc liter' np. dla CONVENIENCE = [1,10,7,11,3,8,6,4,9,2,5]
+            List<string> elevensStrings = GetElevensStrings(input, keyLenght,key); //podzielenie stringa przez dlugosc klucza
+            int quant = elevensStrings.Count;  //ilosc liter w podzielonym stringu
             string C = "";
             int index = 0;
             int tmp;
@@ -87,14 +89,15 @@ namespace bsk_zadania1
             for (int i = 0; i < keyLenght; i++)
             {
                 tmp = i + 1;
-                int v = Array.IndexOf(numbers1, tmp);
+                int v = Array.IndexOf(numbers1, tmp);//którą kolumne należy wziąć w danej iteracji
                 index = v;
                 for (int j = 0; j < quant; j++)
                 {
+                    //jezeli liczba liter w podzielonym stringu jest >= 'numeru litery'
                     if (elevensStrings.ElementAt(j).Length >= index + 1) //dodalem "+1" bo ostatnich 4 liter nie wypisywalo
                     {
                         cc = elevensStrings.ElementAt(j)[index];
-                        C = C + cc;
+                        C = C + cc;//przypisanie litery do zakodowanego stringa
                     }
                 }
             }
