@@ -50,10 +50,9 @@ namespace bsk_zadania1
             {
                 railFencecode.Add("");
             }
-
             int number = 0;
             int increment = 1;
-            foreach (char c in myword)
+            foreach (char c in myword) //przechodzimy po każdej literze w slowie
             {
                 if (number + increment == mykey)
                 {
