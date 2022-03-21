@@ -16,6 +16,7 @@ namespace bsk_zadania1
         {
             InitializeComponent();
             label3.Hide();
+            label4.Hide();
         }
 
         public static string key;
@@ -34,6 +35,8 @@ namespace bsk_zadania1
         {
             label3.Text = new string(Encrypt(temp,key));
             label3.Show();
+            label4.Text = new string(Decrypt(label3.Text, key));
+            label4.Show();
         }
 
         public static int[] kolejnosc(string key)
@@ -58,12 +61,6 @@ namespace bsk_zadania1
             return sorted;
         }
 
-        public static string RemoveWhitespace(string input)
-        {
-            return new string(input.ToCharArray()
-                .Where(c => !Char.IsWhiteSpace(c))
-                .ToArray());
-        }
         public static List<string> GetElevensStrings(string input, int keyLenght, string key)
         {
             List<string> elevensStrings = new List<string>();
@@ -77,10 +74,8 @@ namespace bsk_zadania1
             return elevensStrings;
         }
 
-        public string Encrypt(string word, string key)
+        public string Encrypt(string input, string key)
         {
-            string input;
-            input = RemoveWhitespace(word);
             int keyLenght = key.Length;
             int[] numbers1 = kolejnosc(key);
             List<string> elevensStrings = GetElevensStrings(input, keyLenght,key);
@@ -91,10 +86,6 @@ namespace bsk_zadania1
             char cc = ' ';
             for (int i = 0; i < keyLenght; i++)
             {
-                if (i > 0)
-                {
-                    C = C + " ";
-                }
                 tmp = i + 1;
                 int v = Array.IndexOf(numbers1, tmp);
                 index = v;
@@ -108,6 +99,51 @@ namespace bsk_zadania1
                 }
             }
             return C;
+        }
+
+        public string Decrypt(string text,string key)
+        {
+            int[] numbers1 = kolejnosc(key);
+            string output = "";
+            char[,] tab = new char[numbers1.Length, (int)text.Length / numbers1.Length + 1];
+            int modulo = text.Length % numbers1.Length;
+            int index = 0;
+            for (int i = 0; i < numbers1.Length; i++)
+            {
+                if (Array.IndexOf(numbers1, i + 1) < modulo)
+                {
+                    for (int j = 0; j < (int)text.Length / numbers1.Length + 1; j++)
+                    {
+                        if (index <= text.Length - 1)
+                        {
+                            tab[Array.IndexOf(numbers1, i + 1), j] = text[index];
+
+                            index++;
+                        }
+                    }
+                }
+                else
+                {
+                    for (int j = 0; j < (int)text.Length / numbers1.Length; j++)
+                    {
+                        if (index <= text.Length - 1)
+                        {
+                            tab[Array.IndexOf(numbers1, i + 1), j] = text[index];
+
+                            index++;
+                        }
+                    }
+                }
+            }
+            for (int k = 0; k < (int)text.Length / numbers1.Length + 1; k++)
+            {
+                for (int g = 0; g < numbers1.Length; g++)
+                {
+                    if (tab[g, k] != '\0')
+                        output += tab[g, k];
+                }
+            }
+            return output;
         }
         private void menu2b_Click(object sender, EventArgs e)
         {

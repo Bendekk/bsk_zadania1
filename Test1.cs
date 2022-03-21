@@ -49,9 +49,17 @@ namespace bsk_zadania1
         public void TestMacierzowa2bEncrypt()
         {
             string word = macierzowa2b.Encrypt("abcd","zba");
-            Assert.AreEqual("c b ad", word);
-            word = macierzowa2b.Encrypt("Halo to jest wiadomosc", "klucz");
-            Assert.AreEqual("osdc Howm ajio leas tto", word);
+            Assert.AreEqual("cbad", word);
+            word = macierzowa2b.Encrypt("Halotojestwiadomosc", "klucz");
+            Assert.AreEqual("osdcHowmajioleastto", word);
+        }
+        [TestMethod]
+        public void TestMacierzowa2bDecrypt()
+        {
+            string word = macierzowa2b.Decrypt("abcd", "zba");
+            Assert.AreEqual("cbad", word);
+            word = macierzowa2b.Decrypt("HECRNCEYIISEPSGDIRNTOAAESRMPNSSROEEBTETIAEEHS", "CONVENIENCE");
+            Assert.AreEqual("HEREISASECRETMESSAGEENCIPHEREDBYTRANSPOSITION", word);
         }
     }
 }
