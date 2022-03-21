@@ -46,15 +46,15 @@ namespace bsk_zadania1
         public string RailEncrypt(int mykey,string myword)
         {
             List<string> railFencecode = new List<string>();
-            for (int i = 0; i < mykey; i++)
+            for (int i = 0; i < mykey; i++) //przygotowujemy liste stringow
             {
                 railFencecode.Add("");
             }
             int number = 0;
             int increment = 1;
             foreach (char c in myword) //przechodzimy po każdej literze w slowie
-            {
-                if (number + increment == mykey)
+            { //obliczamy pozycje, którą litere wziąc kolejną
+                if (number + increment == mykey) 
                 {
                     increment = -1;
                 }
@@ -62,12 +62,12 @@ namespace bsk_zadania1
                 {
                     increment = 1;
                 }
-                railFencecode[number] += c;
+                railFencecode[number] += c; //dodajemy litere to listy stringow (jeden string jeden rzad)
                 number += increment;
             }
 
             string buffer = "";
-            foreach (string s in railFencecode)
+            foreach (string s in railFencecode) //zamieniamy liste stringow na jednego stringa
             {
                 buffer += s;
             }
@@ -82,10 +82,9 @@ namespace bsk_zadania1
             {
                 railFencedecode.Add(new List<int>());
             }
-
             int number = 0;
             int increment = 1;
-            for (int i = 0; i < cipherLength; i++)
+            for (int i = 0; i < cipherLength; i++) //dowiadujemy sie o kolejności znaków
             {
                 if (number + increment == mykey)
                 {
@@ -95,17 +94,17 @@ namespace bsk_zadania1
                 {
                     increment = 1;
                 }
-                railFencedecode[number].Add(i);
+                railFencedecode[number].Add(i); //dla pierwszej litery railFencedecode[0] dodajemy 1 dla  railFencedecode[1], 2 
                 number += increment;
             }
 
             int counter = 0;
             char[] buffer2 = new char[cipherLength];
-            for (int i = 0; i < mykey; i++)
+            for (int i = 0; i < mykey; i++) //liczba rzedow
             {
-                for (int j = 0; j < railFencedecode[i].Count; j++)
+                for (int j = 0; j < railFencedecode[i].Count; j++) //liczba liter w danym rzedzie 
                 {
-                    buffer2[railFencedecode[i][j]] = myword[counter];
+                    buffer2[railFencedecode[i][j]] = myword[counter]; //dodajmy litera do opowiedniego miejsca
                     counter++;
                 }
             }
