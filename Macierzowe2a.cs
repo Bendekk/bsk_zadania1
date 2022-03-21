@@ -19,8 +19,8 @@ namespace bsk_zadania1
             label6.Hide();
         }
 
-        string myword;
-        const int d = 5;
+        string myword;   //slowo do zakodwoania
+        const int d = 5; //dlugosc klucza
         private void word_TextChanged(object sender, EventArgs e)
         {
             myword = word.Text;
@@ -42,15 +42,17 @@ namespace bsk_zadania1
             string C = "", substr = "";
             for (int i = 0; i <= myword.Length; i = i + d)
             {
-                if ((i + d) <= myword.Length)
+                if ((i + d) <= myword.Length)  //jezeli i + dugosc kucza <dlugosci slowa do zakodowania
                 {
 
-                    substr = myword.Substring(i, d);
+                    substr = myword.Substring(i, d); //dzielimy slowo na dlugosc klucza 
+                    
+                    //przypisujemujemy do slowa zakodowanego litery w kolejnosci z klucza
                     C = C + substr[2] + substr[3] + substr[0] + substr[4] + substr[1];
                 }
-                else
+                else //jezeli zostalo mniej liter niz dlugosc klucza
                 {
-                    if (myword.Length % 5 == 1)
+                    if (myword.Length % 5 == 1)       //sprawdzamy kazda mozliwosc i przypisujemy litery do slowa zakodowanego w kolejnosci z klucza
                     {
                         substr = myword.Substring(i, 1);
                         C = C + substr[0];
@@ -80,13 +82,16 @@ namespace bsk_zadania1
             string substr = "";
             for (int i = 0; i <= C.Length; i = i + d)
             {
-                if ((i + d) <= C.Length)
+                if ((i + d) <= C.Length)//jezeli i + dugosc kucza <dlugosci slowa zakodowanego
                 {
-                    substr = C.Substring(i, d);
+                    substr = C.Substring(i, d);//dzielimy slowo na dlugosc klucza 
+
+                    //przypisujemujemy do slowa odkodowanego litery w kolejnosci odwrotnej do kolejnosci klucza 
                     C2 = C2 + substr[2] + substr[4] + substr[0] + substr[1] + substr[3];
                 }
-                else
+                else //jezeli zostalo mniej liter niz dlugosc klucza
                 {
+                    //sprawdzamy kazda mozliwosc i przypisujemy litery do slowa odkodowanego w kolejnosci odwrotnej do kolejnosci klucza
                     if (C.Length % 5 == 1)
                     {
                         substr = C.Substring(i, 1);
@@ -109,7 +114,7 @@ namespace bsk_zadania1
                     }
                 }
             }
-            return C2;
+            return C2; //zwracamy slowo odkodowane
         }
 
         private void menu2a_Click(object sender, EventArgs e)
