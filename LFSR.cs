@@ -48,7 +48,7 @@ namespace bsk_zadania1
             {
                 do
                 {
-                    Iteration();
+                    register=Iteration(register);
                     if (_canceller.Token.IsCancellationRequested)
                         break;
 
@@ -59,7 +59,7 @@ namespace bsk_zadania1
         }
         async void Start_Click(object sender, EventArgs e)
         {
-            Initialize();
+            Initialize(polynomial);
             worker();
             Start.Hide();
             Stop.Show();
@@ -83,7 +83,7 @@ namespace bsk_zadania1
             label2.Text = stringBuilder.ToString();
         }
 
-        public void Initialize()
+        public void Initialize(string polynomial)
         {
             size = 0;
             indexes = null;
@@ -104,9 +104,9 @@ namespace bsk_zadania1
                 maxPower *= 2; //lenght of the sequence by bits
             }
             maxPower /= 2;
-            if (register == 0 || register == maxPower) Initialize(); //generate one more time when sequence contains only 1 or 0
+            if (register == 0 || register == maxPower) Initialize(polynomial); //generate one more time when sequence contains only 1 or 0
         }
-        public void Iteration()
+        public ulong Iteration(ulong register)
         {
             numberOfIterations++; //count number of iteration
             output = (output << 1) + register % 2; ////xor for first bit
@@ -117,6 +117,8 @@ namespace bsk_zadania1
             }
             register = register >> 1; //delete first bit
             register = register + maxPower * element; //add 1 or 0 on a first spot
+            Console.WriteLine(register);
+            return register;
         }
     }
 }
