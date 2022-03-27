@@ -12,14 +12,24 @@ namespace bsk_zadania1
 {
     public partial class LFSR : Form
     {
-        string mywielomian;
+        private CancellationTokenSource _canceller;
+        public ulong output = 0;
+        string polynomial;
+        ulong maxPower = 1;
+        public int size;
+        ulong register = 0;
+        public int numberOfIterations = 0;
+        bool startint = true;
+        int[] indexes;
         bool start = false;
-        public LFSR()
-        {
-            InitializeComponent();
-            Stop.Hide();
-        }
+        StringBuilder stringBuilder = new StringBuilder();
 
+         public LFSR ()
+        {
+            InitializeComponent ();
+            Stop.Hide();
+            label2.Hide();
+        }
         private void Menu_Click(object sender, EventArgs e)
         {
             Form1 form = new Form1();
@@ -29,51 +39,84 @@ namespace bsk_zadania1
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            mywielomian = textBox1.Text;
+            polynomial = textBox1.Text;
         }
-
-        private void Start_Click(object sender, EventArgs e)
+        public async void worker()
         {
+            _canceller = new CancellationTokenSource();
+            await Task.Run(() =>
+            {
+                do
+                {
+                    Iteration();
+                    if (_canceller.Token.IsCancellationRequested)
+                        break;
+
+                } while (true);
+            });
+
+            _canceller.Dispose();
+        }
+        async void Start_Click(object sender, EventArgs e)
+        {
+            Initialize();
+            worker();
+            Start.Hide();
             Stop.Show();
-            start = true;
-        }
-        public bool[] lfsr(string wielomian)
-        {
-            wielomian = mywielomian;
-            bool[] bits = new bool[128];
-            bool[] xor = new bool[128];
-            int a = 0;
-            bool startint = false;
-            foreach(char c in wielomian)
-            {
-                if(c == '^')
-                {
-                    startint = true;
-                }
-                if(Char.IsDigit(c) && startint)
-                {
-                    a *= 10;
-                    a += int.Parse(c.ToString());
-                }
-                else
-                {
-                    xor[a] = true;
-                    startint = false;
-                    a = 0;
-                    
-                }
-            }
-            while(start)
-            {
-
-            }
-            return bits;
+            label2.Hide();
         }
 
         private void Stop_Click(object sender, EventArgs e)
         {
-            start = false;
             Stop.Hide();
+            Start.Show();
+            _canceller.Cancel();
+            stringBuilder.Clear();
+            stringBuilder.Append("Wynik: "); //generate strng
+            for (int i = 32; i >= 0; i--)
+                stringBuilder.Append((output >> i) % 2);
+            stringBuilder.Append("\n");
+            stringBuilder.Append("Ostatnia literacja: ");
+            for (int i = size - 1; i >= 0; i--)
+                stringBuilder.Append((register >> i) % 2);
+            label2.Show();
+            label2.Text = stringBuilder.ToString();
+        }
+
+        public void Initialize()
+        {
+            size = 0;
+            indexes = null;
+            output = 0;
+            register = 0;
+            maxPower = 1;
+            numberOfIterations = 0;
+            indexes = polynomial.Split('-').Select(n => Convert.ToInt32(n)).ToArray(); //change string to int[]   
+            int n = 0;
+            for (int i = 0; i < indexes.Length; i++) //find biggest power
+                n = Math.Max(n, indexes[i]);
+            size = n; 
+            maxPower = 1;
+            Random rand = new Random();
+            for (int i = 0; i < size; i++)
+            {
+                register = 2 * register + (ulong)rand.Next(2); //generate random sequence
+                maxPower *= 2; //lenght of the sequence by bits
+            }
+            maxPower /= 2;
+            if (register == 0 || register == maxPower) Initialize(); //generate one more time when sequence contains only 1 or 0
+        }
+        public void Iteration()
+        {
+            numberOfIterations++; //count number of iteration
+            output = (output << 1) + register % 2; ////xor for first bit
+            ulong element = (register >> (size - indexes[0])) % 2; //xor for first bit
+            for (int i = 1; i < indexes.Length; i++)
+            {
+                element = element ^ (register >> (size - indexes[i])) % 2; //xor for right bits from polynomial
+            }
+            register = register >> 1; //delete first bit
+            register = register + maxPower * element; //add 1 or 0 on a first spot
         }
     }
 }
