@@ -13,6 +13,7 @@ namespace bsk_zadania1
         public Rail Rail = new Rail();
         public Macierzowe2a macierzowe2 = new Macierzowe2a();
         public Form2 macierzowa2b = new Form2();
+        public LFSR lfsr = new LFSR();
         [TestMethod]
         public void TestRailEncrypt()
         {
@@ -60,6 +61,16 @@ namespace bsk_zadania1
             Assert.AreEqual("cbad", word);
             word = macierzowa2b.Decrypt("HECRNCEYIISEPSGDIRNTOAAESRMPNSSROEEBTETIAEEHS", "CONVENIENCE");
             Assert.AreEqual("HEREISASECRETMESSAGEENCIPHEREDBYTRANSPOSITION", word);
+        }
+        [TestMethod]
+        public void TestLFSR()
+        {
+            lfsr.Initialize("1-4");
+            ulong word = lfsr.Iteration(Convert.ToUInt64(9)); //9=1001
+            Assert.AreEqual(word, Convert.ToUInt64(4)); //after xor 1001 => 0100=4
+            lfsr.Initialize("1-2-5");
+            word = lfsr.Iteration(Convert.ToUInt64(10)); //10=01010
+            Assert.AreEqual(word, Convert.ToUInt64(21)); //after xor 01010 => 10101=21
         }
     }
 }
