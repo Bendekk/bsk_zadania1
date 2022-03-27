@@ -32,5 +32,12 @@ namespace bsk_zadania1
             form2.Show();
             this.Hide();
         }
+
+        private void LFSR_Click(object sender, EventArgs e)
+        {
+            LFSR lfsr = new LFSR();
+            lfsr.Show();
+            this.Hide();
+        }
     }
 }
