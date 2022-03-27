@@ -13,7 +13,7 @@ namespace bsk_zadania1
 {
     public partial class SzyfrowanieStrumieniowe : Form
     {
-        public string stringToEncrypt;
+        public string stringToEncrypt;  
         public string key;
         public byte[] data;
         public byte[] temp;
@@ -65,17 +65,16 @@ namespace bsk_zadania1
             label2.Show();
             label4.Hide();
 
-            lfsr.Stop_Click(sender, e);
-            data = Encoding.ASCII.GetBytes(stringToEncrypt);
-            temp = XorOperation(data);
-            s = string.Join(" ",temp.Select(x => Convert.ToString(x, 2).PadLeft(8, '0')));
-            label2.Text = s;
+            lfsr.Stop_Click(sender, e);                         //stop gerating key need to encript
+            data = Encoding.ASCII.GetBytes(stringToEncrypt);    //array of bytes  string to encritp
+            temp = XorOperation(data);                          //xor operations on array of bytes
+            s = string.Join(" ",temp.Select(x => Convert.ToString(x, 2).PadLeft(8, '0'))); //change bytes to bits
         }
 
         private byte[] XorOperation(byte[] temporary)
         {
-            byte[] key = lfsr.getBytes();
-            byte[] output = new byte[temporary.Length];
+            byte[] key = lfsr.getBytes();                   //divide sting to bytes
+            byte[] output = new byte[temporary.Length];     //new array of bytes (lenght of string to encript)
             int keyIndex = 0;
             for (int i = 0; i < temporary.Length; i++)
             {
