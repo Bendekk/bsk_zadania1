@@ -19,9 +19,7 @@ namespace bsk_zadania1
         public int size;
         ulong register = 0;
         public int numberOfIterations = 0;
-        bool startint = true;
         int[] indexes;
-        bool start = false;
         StringBuilder stringBuilder = new StringBuilder();
 
          public LFSR ()
@@ -66,7 +64,7 @@ namespace bsk_zadania1
             label2.Hide();
         }
 
-        private void Stop_Click(object sender, EventArgs e)
+        public void Stop_Click(object sender, EventArgs e)
         {
             Stop.Hide();
             Start.Show();
@@ -119,6 +117,27 @@ namespace bsk_zadania1
             register = register + maxPower * element; //add 1 or 0 on a first spot
             Console.WriteLine(register);
             return register;
+        }
+
+        public byte[] getBytes()
+        {
+            /*int n = numberOfIterations == 0 ? 1 : numberOfIterations/8;
+            n = numberOfIterations % 8 > 0 ? n + 1 : n;
+            n = Math.Min(n, 64/8);*/
+            int n = 64 / 8;
+            ulong helpregister = output;
+            byte[] tab = new byte[n];
+            for (int i = n - 1; helpregister > 0; i--)
+            {
+                tab[i] = (byte)helpregister;
+                helpregister = helpregister >> 8;
+            }
+            return tab;
+        }
+
+        public void changePolynomial(string key)
+        {
+            polynomial = key;
         }
     }
 }

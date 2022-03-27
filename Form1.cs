@@ -39,5 +39,12 @@ namespace bsk_zadania1
             lfsr.Show();
             this.Hide();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            SzyfrowanieStrumieniowe szyfrowanieStrumieniowe = new SzyfrowanieStrumieniowe();
+            szyfrowanieStrumieniowe.Show();
+            this.Hide();
+        }
     }
 }
