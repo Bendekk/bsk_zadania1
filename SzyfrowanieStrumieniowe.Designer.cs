@@ -36,8 +36,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.keyText = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.encoded = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
@@ -113,16 +114,6 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(28, 264);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(112, 34);
-            this.button4.TabIndex = 8;
-            this.button4.Text = "Odkoduj";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
             // encoded
             // 
             this.encoded.AutoSize = true;
@@ -132,13 +123,33 @@
             this.encoded.TabIndex = 9;
             this.encoded.Text = "label4";
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(28, 269);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(112, 34);
+            this.button4.TabIndex = 10;
+            this.button4.Text = "Odkoduj";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(178, 205);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(206, 25);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "Trwa generowanie klucza";
+            // 
             // SzyfrowanieStrumieniowe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.encoded);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.button4);
+            this.Controls.Add(this.encoded);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.keyText);
             this.Controls.Add(this.label3);
@@ -164,7 +175,8 @@
         private Label label3;
         private TextBox keyText;
         private Button button3;
-        private Button button4;
         private Label encoded;
+        private Button button4;
+        private Label label4;
     }
 }

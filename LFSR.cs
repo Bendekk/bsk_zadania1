@@ -135,6 +135,11 @@ namespace bsk_zadania1
             return tab;
         }
 
+        public ulong returnOutput()
+        {
+            return output;
+        }
+
         public void changePolynomial(string key)
         {
             polynomial = key;

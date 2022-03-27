@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,6 +17,7 @@ namespace bsk_zadania1
         public string key;
         public byte[] data;
         public byte[] temp;
+        public string s;
 
         LFSR lfsr = new LFSR();
         
@@ -23,6 +25,11 @@ namespace bsk_zadania1
         public SzyfrowanieStrumieniowe()
         {
             InitializeComponent();
+            button3.Hide();
+            button4.Hide();
+            label2.Hide();
+            label4.Hide();
+            encoded.Hide();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -34,7 +41,10 @@ namespace bsk_zadania1
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            label2.Hide();
+            label4.Show();
+            button3.Show();
+            button2.Show();
             lfsr.Initialize(key);
             lfsr.worker();
         }
@@ -51,10 +61,15 @@ namespace bsk_zadania1
 
         private void button3_Click(object sender, EventArgs e)
         {
+            button4.Show();
+            label2.Show();
+            label4.Hide();
+
             lfsr.Stop_Click(sender, e);
             data = Encoding.ASCII.GetBytes(stringToEncrypt);
             temp = XorOperation(data);
-            label2.Text = System.Text.Encoding.UTF8.GetString(temp);
+            s = string.Join(" ",temp.Select(x => Convert.ToString(x, 2).PadLeft(8, '0')));
+            label2.Text = s;
         }
 
         private byte[] XorOperation(byte[] temporary)
@@ -69,10 +84,12 @@ namespace bsk_zadania1
                 keyIndex = keyIndex % key.Length;
             }
             return output;
+            
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
+            encoded.Show();
             encoded.Text = System.Text.Encoding.UTF8.GetString(XorOperation(temp));
         }
     }
