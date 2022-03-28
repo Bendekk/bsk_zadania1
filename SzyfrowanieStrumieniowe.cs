@@ -79,9 +79,9 @@ namespace bsk_zadania1
             int keyIndex = 0;
             for (int i = 0; i < temporary.Length; i++)
             {
-                output[i] = (byte)(temporary[i] ^ key[keyIndex]);
+                output[i] = (byte)(temporary[i] ^ key[keyIndex]); //xor for one byte in key and sentence
                 keyIndex++;
-                keyIndex = keyIndex % key.Length;
+                keyIndex = keyIndex % key.Length; //if key ends we start from beggining
             }
             return output;
             
