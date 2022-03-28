@@ -115,7 +115,6 @@ namespace bsk_zadania1
             }
             register = register >> 1; //delete first bit
             register = register + maxPower * element; //add 1 or 0 on a first spot
-            Console.WriteLine(register);
             return register;
         }
 

@@ -19,7 +19,7 @@ namespace bsk_zadania1
         public byte[] temp;
         public string s;
 
-        LFSR lfsr = new LFSR();
+        public LFSR lfsr = new LFSR();
         
 
         public SzyfrowanieStrumieniowe()
@@ -69,9 +69,10 @@ namespace bsk_zadania1
             data = Encoding.ASCII.GetBytes(stringToEncrypt);    //array of bytes  string to encritp
             temp = XorOperation(data);                          //xor operations on array of bytes
             s = string.Join(" ",temp.Select(x => Convert.ToString(x, 2).PadLeft(8, '0'))); //change bytes to bits
+            label2.Text = s;
         }
 
-        private byte[] XorOperation(byte[] temporary)
+        public byte[] XorOperation(byte[] temporary)
         {
             byte[] key = lfsr.getBytes();                   //divide sting to bytes
             byte[] output = new byte[temporary.Length];     //new array of bytes (lenght of string to encript)

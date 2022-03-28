@@ -14,6 +14,7 @@ namespace bsk_zadania1
         public Macierzowe2a macierzowe2 = new Macierzowe2a();
         public Form2 macierzowa2b = new Form2();
         public LFSR lfsr = new LFSR();
+        public SzyfrowanieStrumieniowe szyfrowanieStrumieniowe = new SzyfrowanieStrumieniowe();
         [TestMethod]
         public void TestRailEncrypt()
         {
@@ -71,6 +72,18 @@ namespace bsk_zadania1
             lfsr.Initialize("1-2-5");
             word = lfsr.Iteration(Convert.ToUInt64(10)); //10=01010
             Assert.AreEqual(word, Convert.ToUInt64(21)); //after xor 01010 => 10101=21
+        }
+        [TestMethod]
+        public void TestStrumieniowe()
+        {
+            szyfrowanieStrumieniowe.lfsr.Initialize("1-4");
+            byte[] vs = Encoding.ASCII.GetBytes("Halo");
+            byte[] code = szyfrowanieStrumieniowe.XorOperation(vs);
+            Assert.AreEqual("Halo", System.Text.Encoding.UTF8.GetString(szyfrowanieStrumieniowe.XorOperation(code)));
+            szyfrowanieStrumieniowe.lfsr.Initialize("1-4-5-10");
+            vs = Encoding.ASCII.GetBytes("Dzien dobry to ja student");
+            code = szyfrowanieStrumieniowe.XorOperation(vs);
+            Assert.AreEqual("Dzien dobry to ja student", System.Text.Encoding.UTF8.GetString(szyfrowanieStrumieniowe.XorOperation(code)));
         }
     }
 }
