@@ -40,10 +40,9 @@
             // 
             // menu2b
             // 
-            this.menu2b.Location = new System.Drawing.Point(33, 233);
-            this.menu2b.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.menu2b.Location = new System.Drawing.Point(47, 388);
             this.menu2b.Name = "menu2b";
-            this.menu2b.Size = new System.Drawing.Size(78, 20);
+            this.menu2b.Size = new System.Drawing.Size(111, 33);
             this.menu2b.TabIndex = 0;
             this.menu2b.Text = "Menu";
             this.menu2b.UseVisualStyleBackColor = true;
@@ -52,29 +51,26 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(33, 19);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(47, 32);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(99, 15);
+            this.label1.Size = new System.Drawing.Size(148, 25);
             this.label1.TabIndex = 1;
             this.label1.Text = "Klucz kodowania:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(33, 45);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(47, 75);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(156, 15);
+            this.label2.Size = new System.Drawing.Size(238, 25);
             this.label2.TabIndex = 2;
             this.label2.Text = "Wyrażenie do zakodowania: ";
             // 
             // submit
             // 
-            this.submit.Location = new System.Drawing.Point(33, 92);
-            this.submit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.submit.Location = new System.Drawing.Point(47, 153);
             this.submit.Name = "submit";
-            this.submit.Size = new System.Drawing.Size(78, 20);
+            this.submit.Size = new System.Drawing.Size(111, 33);
             this.submit.TabIndex = 5;
             this.submit.Text = "Zakoduj";
             this.submit.UseVisualStyleBackColor = true;
@@ -83,45 +79,42 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(158, 95);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(226, 158);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(38, 15);
+            this.label3.Size = new System.Drawing.Size(59, 25);
             this.label3.TabIndex = 6;
             this.label3.Text = "label3";
             // 
             // keyText
             // 
-            this.keyText.Location = new System.Drawing.Point(216, 17);
-            this.keyText.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.keyText.Location = new System.Drawing.Point(309, 28);
             this.keyText.Name = "keyText";
-            this.keyText.Size = new System.Drawing.Size(106, 23);
+            this.keyText.Size = new System.Drawing.Size(150, 31);
             this.keyText.TabIndex = 7;
             this.keyText.TextChanged += new System.EventHandler(this.keyText_TextChanged);
             // 
             // sentenceText
             // 
-            this.sentenceText.Location = new System.Drawing.Point(216, 45);
-            this.sentenceText.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.sentenceText.Location = new System.Drawing.Point(309, 75);
             this.sentenceText.Name = "sentenceText";
-            this.sentenceText.Size = new System.Drawing.Size(106, 23);
+            this.sentenceText.Size = new System.Drawing.Size(150, 31);
             this.sentenceText.TabIndex = 8;
             this.sentenceText.TextChanged += new System.EventHandler(this.sentenceText_TextChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(158, 121);
+            this.label4.Location = new System.Drawing.Point(235, 205);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(38, 15);
+            this.label4.Size = new System.Drawing.Size(59, 25);
             this.label4.TabIndex = 9;
             this.label4.Text = "label4";
             // 
             // Form2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(560, 270);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.sentenceText);
             this.Controls.Add(this.keyText);
@@ -130,7 +123,6 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menu2b);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form2";
             this.Text = "Form2";
             this.ResumeLayout(false);
