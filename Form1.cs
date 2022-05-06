@@ -46,5 +46,12 @@ namespace bsk_zadania1
             szyfrowanieStrumieniowe.Show();
             this.Hide();
         }
+
+        private void DES_Click(object sender, EventArgs e)
+        {
+            Des des = new Des();
+            des.Show();
+            this.Hide();
+        }
     }
 }

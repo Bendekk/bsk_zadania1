@@ -15,6 +15,7 @@ namespace bsk_zadania1
         public Form2 macierzowa2b = new Form2();
         public LFSR lfsr = new LFSR();
         public SzyfrowanieStrumieniowe szyfrowanieStrumieniowe = new SzyfrowanieStrumieniowe();
+        public Des des = new Des();
         [TestMethod]
         public void TestRailEncrypt()
         {
@@ -84,6 +85,46 @@ namespace bsk_zadania1
             vs = Encoding.ASCII.GetBytes("Dzien dobry to ja student");
             code = szyfrowanieStrumieniowe.XorOperation(vs);
             Assert.AreEqual("Dzien dobry to ja student", System.Text.Encoding.UTF8.GetString(szyfrowanieStrumieniowe.XorOperation(code)));
+        }
+        [TestMethod]
+        public void TestDesPC1()
+        {
+            ulong i = 1383827165325090801;
+            // i w systemie dwójkowym "00010011 00110100 01010111 01111001 10011011 10111100 11011111 11110001";
+            ulong r = 67779029043144591;
+            // r w systemie dwójkowym "1111000 0110011 0010101 0101111 0101010 1011001 1001111 0001111";
+            ulong result =des.preparekey1(i);
+            Console.WriteLine(result);
+            //permutedChoice1
+            Assert.AreEqual(r, result);
+        }
+        [TestMethod]
+        public void TestDesKey()
+        {
+            ulong i = 1383827165325090801;
+            // i w systemie dwójkowym "00010011 00110100 01010111 01111001 10011011 10111100 11011111 11110001";
+            ulong firstK = 29699430183026; //000110 110000 001011 101111 111111 000111 000001 110010    11110011010111011011001110110111100100011100101
+            ulong lastK = 223465186400245; //110010 110011 110110 001011 000011 100001 011111 110101
+            ulong[] keyCipher = new ulong[16];
+            des.generateKey(i, keyCipher);
+            Assert.AreEqual(keyCipher[0], firstK);
+            Assert.AreEqual(keyCipher[15],lastK);
+        }
+        [TestMethod]
+        public void TestDesIP()
+        {
+            string hex = "0123456789ABCDEF";
+            byte[] input = new byte[8];
+            input = Enumerable.Range(0, hex.Length)
+                     .Where(x => x % 2 == 0)
+                     .Select(x => Convert.ToByte(hex.Substring(x, 2), 16))
+                     .ToArray();
+            uint[] state = new uint[2];
+            uint output1 = 3422604543; //1100 1100 0000 0000 1100 1100 1111 1111
+            uint output2 = 4037734570; //1111 0000 1010 1010 1111 0000 1010 1010
+            des.IP(state, input);
+            Assert.AreEqual(output1, state[0]);
+            Assert.AreEqual(output2, state[1]);
         }
     }
 }
