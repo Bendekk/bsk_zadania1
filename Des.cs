@@ -126,9 +126,9 @@ namespace bsk_zadania1
         }
         public void generateKey(ulong key, ulong[] keyCipher) //cały process generowania klucza key-64bit klucz, keyCipher[16] 16 wyjściowych kluczy
         {
-            ulong result = preparekey1(key);
+            ulong result = preparekey1(key); ////zmiana dlugości klucza z 64bit na 56 pkt 4 
 
-            int left = this.splitBit(result, true);
+            int left = this.splitBit(result, true); //dzielimy klucz na dwie części pkt 5
             int right = this.splitBit(result, false);
 
             for (int i = 0; i < 16; i++) //przesuwamy dla każdego klucza bity o odpowiednią ilość zawartą w tyablicy nols pkt 6
@@ -141,7 +141,7 @@ namespace bsk_zadania1
                 right = (right << ls) + add;
                 right = right % 268435456;
 
-                result = this.preparekey2(left, right);
+                result = this.preparekey2(left, right); //łączymy dwa bloki i zmieniamy długość z 56bit na 48 pkt 7
 
                 keyCipher[i] = result;
             }
@@ -403,7 +403,7 @@ namespace bsk_zadania1
             uint[] state = new uint[2];
             uint idx, t;
 
-            state = IP(state, input); 
+            state = IP(state, input); //przygotowanie wiadomości pkt 1-3
 
             for (idx = 0; idx < 15; ++idx) 
             {
