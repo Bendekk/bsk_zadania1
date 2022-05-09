@@ -115,16 +115,53 @@ namespace bsk_zadania1
         {
             string hex = "0123456789ABCDEF";
             byte[] input = new byte[8];
-            input = Enumerable.Range(0, hex.Length)
-                     .Where(x => x % 2 == 0)
-                     .Select(x => Convert.ToByte(hex.Substring(x, 2), 16))
-                     .ToArray();
+            input = Enumerable.Range(0, hex.Length).Where(x => x % 2 == 0).Select(x => Convert.ToByte(hex.Substring(x, 2), 16)).ToArray();
             uint[] state = new uint[2];
             uint output1 = 3422604543; //1100 1100 0000 0000 1100 1100 1111 1111
             uint output2 = 4037734570; //1111 0000 1010 1010 1111 0000 1010 1010
             des.IP(state, input);
             Assert.AreEqual(output1, state[0]);
             Assert.AreEqual(output2, state[1]);
+        }
+        [TestMethod]
+        public void TestDesF()
+        {
+            ulong key = 29699430183026;
+            uint R = 4037734570;
+            uint output=des.functionF(R, key);
+            uint testout = 592095675;
+            Assert.AreEqual(testout, output);
+            Console.WriteLine(output);
+        }
+        [TestMethod]
+        public void TestCryptDes()
+        {
+            string hex = "0123456789ABCDEF";
+            byte[] input = new byte[8];
+            byte[] output = new byte[8];
+            input = Enumerable.Range(0, hex.Length).Where(x => x % 2 == 0).Select(x => Convert.ToByte(hex.Substring(x, 2), 16)).ToArray();
+            ulong[] keyCipher = new ulong[16];
+            ulong key = 1383827165325090801;
+            string testOut = "85E813540F0AB405";
+            des.generateKey(key, keyCipher);
+            des.desCipher(input,output,keyCipher);
+            string o = BitConverter.ToString(output).Replace("-", string.Empty);
+            Assert.AreEqual(testOut, o);
+        }
+        [TestMethod]
+        public void TestDecryptDes()
+        {
+            string hex = "85E813540F0AB405";
+            byte[] input = new byte[8];
+            byte[] output = new byte[8];
+            input = Enumerable.Range(0, hex.Length).Where(x => x % 2 == 0).Select(x => Convert.ToByte(hex.Substring(x, 2), 16)).ToArray();
+            ulong[] keyCipher = new ulong[16];
+            ulong key = 1383827165325090801;
+            des.generateKey(key, keyCipher);
+            string testOut = "0123456789ABCDEF";
+            des.desDecipher(input,output,keyCipher);
+            string o = BitConverter.ToString(output).Replace("-", string.Empty);
+            Assert.AreEqual(testOut, o);
         }
     }
 }
